@@ -1,0 +1,14 @@
+---
+description: UI security for Svelte components (XSS, no secrets in the client)
+globs: "**/*.svelte"
+alwaysApply: false
+---
+
+# UI security
+
+This is an **Apply to Specific Files** rule. It attaches on `**/*.svelte`.
+
+- Render user text with `{value}`. Do not use `{@html}` for untrusted input.
+- Never put API keys, tokens, or passwords in pages or `$lib/components`.
+- Read secrets only on the server (`$lib/server/`, `+server.ts`, `+page.server.ts`).
+- Keep mutations behind `/api/` `fetch` calls; do not import `$lib/server/*` from the client.

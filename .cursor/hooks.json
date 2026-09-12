@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterMCPExecution": [
+      {
+        "command": ".cursor/hooks/log-mcp.sh",
+        "timeout": 10
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/block-secrets.sh",
+        "timeout": 5
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "command": ".cursor/hooks/block-secrets.sh",
+        "timeout": 5
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": ".cursor/hooks/block-secrets.sh",
+        "timeout": 5
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": ".cursor/hooks/block-secrets.sh",
+        "matcher": "Write|StrReplace|Read",
+        "timeout": 5
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/format-after-edit.sh",
+        "timeout": 20
+      },
+      {
+        "command": ".cursor/hooks/run-related-tests.sh",
+        "timeout": 30
+      }
+    ],
+    "afterTabFileEdit": [
+      {
+        "command": ".cursor/hooks/format-after-edit.sh",
+        "timeout": 20
+      }
+    ]
+  }
+}

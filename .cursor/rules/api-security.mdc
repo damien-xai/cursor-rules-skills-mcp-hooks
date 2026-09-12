@@ -1,0 +1,15 @@
+---
+description: API and server security for SvelteKit handlers and stores
+globs: "**/src/routes/api/**/*.ts,**/src/lib/server/**/*.ts,**/*.server.ts"
+alwaysApply: false
+---
+
+# API security
+
+This is an **Apply to Specific Files** rule. It attaches on server routes and stores.
+
+- Validate every JSON field (type + trim). Use `error(400, ...)` for bad input.
+- Treat ids as untrusted. Use `error(404, 'not found')` when a row is missing.
+- Never log, return, or hard-code secrets. Env vars stay on the server.
+- Export store functions with explicit return types; return copies, not the live array.
+- Use `json` and `error` from `@sveltejs/kit` in `+server.ts` handlers.
